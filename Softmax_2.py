@@ -6,10 +6,10 @@ import math
 tf.set_random_seed(777)
 
 data = np.load("processed_data.npy")
-train_X_data = data[:-1000, 0:-1]
-train_Y_data = data[:-1000, [-1]]
-test_X_data = data[-1000:, 0:-1]
-test_Y_data = data[-1000:, [-1]]
+train_X_data = data[:-10000, 0:-1]
+train_Y_data = data[:-10000, [-1]]
+test_X_data = data[-10000:, 0:-1]
+test_Y_data = data[-10000:, [-1]]
 print(train_X_data.shape, train_Y_data.shape, test_X_data.shape, test_Y_data.shape)
 
 nb_transmitter = 9
@@ -21,7 +21,7 @@ Y_one_hot = tf.one_hot(Y, nb_transmitter)
 Y_one_hot = tf.reshape(Y_one_hot, [-1, nb_transmitter])
 
 batch_size = 1000
-num_epochs = 50
+num_epochs = 100
 num_iterations = int(math.ceil(train_X_data.shape[0] / batch_size))
 
 W = tf.Variable(tf.random_normal([1999, nb_transmitter]), name='weight')
@@ -44,27 +44,24 @@ with tf.Session() as sess:
 
     for epoch in range(num_epochs):
         avg_cost = 0
+        avg_accuracy = 0
 
         for iteration in range(num_iterations):
             batch_xs = train_X_data[batch_size * iteration: batch_size * (iteration + 1), :]
             batch_ys = train_Y_data[batch_size * iteration: batch_size * (iteration + 1), :]
-            _, cost_val = sess.run([train, cost], feed_dict={X: batch_xs, Y: batch_ys})
+            _, cost_val, acc_val = sess.run([train, cost, accuracy],
+                                            feed_dict={X: batch_xs, Y: batch_ys})
             avg_cost += cost_val / num_iterations
+            avg_accuracy += acc_val / num_iterations
 
-        print(f"Epoch: {(epoch + 1):04d}, Cost: {avg_cost:.9f}")
+        print(f"Epoch: {(epoch + 1):04d}, Cost: {avg_cost:.9f}, Accuracy: {avg_accuracy:.2%}")
 
-    print("Accuracy:",
-        sess.run(accuracy, feed_dict={X: test_X_data, Y: test_Y_data}),
-    )
+    acc = sess.run(accuracy, feed_dict={X: test_X_data, Y: test_Y_data})
+    print(f"Accuracy: {(acc * 100):2.2f}%")
 
-    '''
-    for step in range(3001):
-        _, cost_val, acc_val = sess.run([optimizer, cost, accuracy], feed_dict={X: train_X_data, Y: train_Y_data})
+    show_X_data = test_X_data[-100:, :]
+    show_Y_data = test_Y_data[-100:, :]
 
-        if step % 100 == 0:
-            print("Step: {:5}\tCost: {:.3f}\tAcc: {:.2%}".format(step, cost_val, acc_val))
-
-    pred = sess.run(prediction, feed_dict={X: test_X_data})
-    for p, y in zip(pred, test_Y_data.flatten()):
+    pred = sess.run(prediction, feed_dict={X: show_X_data})
+    for p, y in zip(pred, show_Y_data.flatten()):
         print("[{}] Prediction: {} True Y: {}".format(p == int(y), p, int(y)))
-    '''

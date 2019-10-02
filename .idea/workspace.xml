@@ -2,9 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d3f220b9-6200-4de4-aa9e-24cc0d440d6c" name="Default Changelist" comment="second commit">
+      <change beforePath="$PROJECT_DIR$/.gitignore.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cnn_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/Cnn_1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Data_processing.py" beforeDir="false" afterPath="$PROJECT_DIR$/Data_processing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Nn_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/Nn_1.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Softmax_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/Softmax_1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Softmax_2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Softmax_2.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,10 +21,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Data_processing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="521">
-              <caret line="81" column="30" selection-start-line="81" selection-start-column="30" selection-end-line="81" selection-end-column="30" />
+            <state relative-caret-position="483">
+              <caret line="74" column="38" selection-start-line="74" selection-start-column="38" selection-end-line="74" selection-end-column="38" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
+                <element signature="e#375#813#0" />
+                <element signature="e#888#1252#0" />
               </folding>
             </state>
           </provider>
@@ -30,7 +36,7 @@
         <entry file="file://$PROJECT_DIR$/batch_normalization.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="19">
-              <caret line="1" column="18" lean-forward="true" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
+              <caret line="1" column="18" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -41,8 +47,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Cnn_1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-391">
-              <caret line="38" column="40" lean-forward="true" selection-start-line="38" selection-start-column="40" selection-end-line="38" selection-end-column="40" />
+            <state relative-caret-position="133">
+              <caret line="43" column="45" lean-forward="true" selection-start-line="43" selection-start-column="45" selection-end-line="43" selection-end-column="45" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -53,8 +59,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Nn_1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-513">
-              <caret line="3" column="42" lean-forward="true" selection-start-line="3" selection-end-line="3" selection-end-column="42" />
+            <state relative-caret-position="431">
+              <caret line="84" column="78" lean-forward="true" selection-start-line="79" selection-start-column="4" selection-end-line="84" selection-end-column="78" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -65,8 +71,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Softmax_1.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="27" column="25" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
+            <state relative-caret-position="445">
+              <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -77,8 +83,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Softmax_2.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="40" selection-start-line="40" selection-end-line="40" />
+            <state relative-caret-position="-315">
+              <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
               <folding>
                 <element signature="e#12#30#0" expanded="true" />
               </folding>
@@ -98,6 +104,7 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>batch</find>
+      <find>9</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -108,17 +115,17 @@
       <list>
         <option value="$PROJECT_DIR$/test_1.py" />
         <option value="$PROJECT_DIR$/test.py" />
-        <option value="$PROJECT_DIR$/Data_processing.py" />
-        <option value="$PROJECT_DIR$/Softmax_1.py" />
-        <option value="$PROJECT_DIR$/Softmax_2.py" />
         <option value="$PROJECT_DIR$/batch_normalization.py" />
+        <option value="$PROJECT_DIR$/Softmax_1.py" />
+        <option value="$PROJECT_DIR$/Data_processing.py" />
+        <option value="$PROJECT_DIR$/Softmax_2.py" />
         <option value="$PROJECT_DIR$/Nn_1.py" />
         <option value="$PROJECT_DIR$/Cnn_1.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="2853" />
+    <option name="x" value="2850" />
     <option name="width" value="993" />
     <option name="height" value="1047" />
   </component>
@@ -270,8 +277,8 @@
         <item itemvalue="Python.Cnn_1 (1)" />
         <item itemvalue="Python.Nn_1" />
         <item itemvalue="Python.Softmax_2" />
-        <item itemvalue="Python.Softmax_1" />
         <item itemvalue="Python.Data_processing" />
+        <item itemvalue="Python.Softmax_1" />
       </list>
     </recent_temporary>
   </component>
@@ -306,10 +313,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="2853" y="0" width="993" height="1047" extended-state="0" />
+    <frame x="2850" y="0" width="993" height="1047" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2079314" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23365487" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -322,7 +329,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32968238" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" weight="0.32932165" />
-      <window_info anchor="bottom" id="Python Console" order="10" weight="0.21905805" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.3023001" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -339,50 +346,52 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/test.py" />
-    <entry file="file://$PROJECT_DIR$/Softmax_2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="40" selection-start-line="40" selection-end-line="40" />
-          <folding>
-            <element signature="e#12#30#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Softmax_1.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="27" column="25" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Data_processing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="521">
-          <caret line="81" column="30" selection-start-line="81" selection-start-column="30" selection-end-line="81" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/batch_normalization.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19">
-          <caret line="1" column="18" lean-forward="true" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
+          <caret line="1" column="18" selection-start-line="1" selection-start-column="18" selection-end-line="1" selection-end-column="18" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Data_processing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="74" column="38" selection-start-line="74" selection-start-column="38" selection-end-line="74" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+            <element signature="e#375#813#0" />
+            <element signature="e#888#1252#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Softmax_1.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="445">
+          <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Softmax_2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-315">
+          <caret line="23" column="16" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="16" />
+          <folding>
+            <element signature="e#12#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Nn_1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-513">
-          <caret line="3" column="42" lean-forward="true" selection-start-line="3" selection-end-line="3" selection-end-column="42" />
+        <state relative-caret-position="431">
+          <caret line="84" column="78" lean-forward="true" selection-start-line="79" selection-start-column="4" selection-end-line="84" selection-end-column="78" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
@@ -391,8 +400,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Cnn_1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-391">
-          <caret line="38" column="40" lean-forward="true" selection-start-line="38" selection-start-column="40" selection-end-line="38" selection-end-column="40" />
+        <state relative-caret-position="133">
+          <caret line="43" column="45" lean-forward="true" selection-start-line="43" selection-start-column="45" selection-end-line="43" selection-end-column="45" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>

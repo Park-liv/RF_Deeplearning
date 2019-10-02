@@ -16,7 +16,7 @@ print(train_X_data.shape, train_Y_data.shape, test_X_data.shape, test_Y_data.sha
 
 nb_transmitter = 9
 batch_size = 1000
-num_epochs = 15
+num_epochs = 10
 num_iterations = int(math.ceil(train_X_data.shape[0] / batch_size))
 
 X = tf.placeholder(tf.float32, [None, 1999])
@@ -30,15 +30,15 @@ keep_prob = tf.placeholder(tf.float32)
 Y_one_hot = tf.one_hot(Y, nb_transmitter)
 Y_one_hot = tf.reshape(Y_one_hot, [-1, nb_transmitter])
 
-W1 = tf.Variable(tf.random_normal([20, 1, 16], stddev=0.01))
-L1 = tf.nn.conv1d(X_con, W1, stride=[1, 1, 1], padding='SAME')
+W1 = tf.Variable(tf.random_normal([20, 1, 8], stddev=0.01))
+L1 = tf.nn.conv1d(X_con, W1, stride=[1, 2, 1], padding='SAME')
 L1 = tf.nn.relu(L1)
-L1 = tf.nn.pool(L1, pooling_type='AVG',window_shape=[4], strides=[4], padding='SAME')
+L1 = tf.nn.pool(L1, pooling_type='MAX',window_shape=[4], strides=[4], padding='SAME')
 print(L1.shape)
-''' (?, 500, 8)'''
-L1_flat = tf.reshape(L1, [-1, 500 * 16])
+''' (?, 250, 8)'''
+L1_flat = tf.reshape(L1, [-1, 250 * 8])
 
-W2 = tf.get_variable("W2", shape=[500 * 16, 1000],
+W2 = tf.get_variable("W2", shape=[250 * 8, 1000],
                      initializer=tf.contrib.layers.xavier_initializer())
 b2 = tf.Variable(tf.random_normal([1000]))
 Bn2 = batch_norm(tf.matmul(L1_flat, W2) + b2)
@@ -55,7 +55,7 @@ hypothesis = tf.matmul(L2, W3) + b3
 
 cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(logits=hypothesis,
                                                                  labels=tf.stop_gradient([Y_one_hot])))
-train = tf.train.AdamOptimizer(learning_rate=0.1e-5).minimize(cost)
+train = tf.train.AdamOptimizer(learning_rate=1e-4).minimize(cost)
 
 prediction = tf.argmax(hypothesis, axis=1)
 correct_prediction = tf.equal(prediction, tf.argmax(Y_one_hot, axis=1))
@@ -80,3 +80,10 @@ with tf.Session() as sess:
 
     acc = sess.run(accuracy, feed_dict={X: test_X_data, Y: test_Y_data, keep_prob: 1})
     print(f"Accuracy: {(acc * 100):2.2f}%")
+
+    show_X_data = test_X_data[-100:, :]
+    show_Y_data = test_Y_data[-100:, :]
+
+    pred = sess.run(prediction, feed_dict={X: show_X_data, keep_prob: 1})
+    for p, y in zip(pred, show_Y_data.flatten()):
+        print("[{}] Prediction: {} True Y: {}".format(p == int(y), p, int(y)))

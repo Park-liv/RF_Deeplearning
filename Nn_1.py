@@ -16,7 +16,7 @@ print(train_X_data.shape, train_Y_data.shape, test_X_data.shape, test_Y_data.sha
 
 nb_transmitter = 9
 batch_size = 1000
-num_epochs = 100
+num_epochs = 10
 num_iterations = int(math.ceil(train_X_data.shape[0] / batch_size))
 
 X = tf.placeholder(tf.float32, [None, 1999])
@@ -52,7 +52,7 @@ hypothesis = tf.matmul(L2, W3) + b3
 
 cost = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits_v2(logits=hypothesis,
                                                                  labels=tf.stop_gradient([Y_one_hot])))
-train = tf.train.AdamOptimizer(learning_rate=1e-5).minimize(cost)
+train = tf.train.AdamOptimizer(learning_rate=1e-4).minimize(cost)
 
 prediction = tf.argmax(hypothesis, axis=1)
 correct_prediction = tf.equal(prediction, tf.argmax(Y_one_hot, axis=1))
@@ -76,3 +76,10 @@ with tf.Session() as sess:
 
     acc = sess.run(accuracy, feed_dict={X: test_X_data, Y: test_Y_data, keep_prob: 1})
     print(f"Accuracy: {(acc * 100):2.2f}%")
+
+    show_X_data = test_X_data[-100:, :]
+    show_Y_data = test_Y_data[-100:, :]
+
+    pred = sess.run(prediction, feed_dict={X: show_X_data, keep_prob: 1})
+    for p, y in zip(pred, show_Y_data.flatten()):
+        print("[{}] Prediction: {} True Y: {}".format(p == int(y), p, int(y)))
