@@ -7,22 +7,27 @@ tf.set_random_seed(777)
 
 num_test = 10000
 
-data = np.load("processed_data.npy")
-train_X_data = data[:-num_test, 0:-1]
-train_Y_data = data[:-num_test, [-1]]
-test_X_data = data[-num_test:, 0:-1]
-test_Y_data = data[-num_test:, [-1]]
+data = np.load("1M_data.npy")
+data2 = np.load("2M_data.npy")
+data3 = np.concatenate((data, data2), axis=0)
+np.random.shuffle(data3)
+np.random.shuffle(data3)
+np.random.shuffle(data3)
+train_X_data = data3[:-num_test, 0:-1]
+train_Y_data = data3[:-num_test, [-1]]
+test_X_data = data3[-num_test:, 0:-1]
+test_Y_data = data3[-num_test:, [-1]]
 print(train_X_data.shape, train_Y_data.shape, test_X_data.shape, test_Y_data.shape)
 
 nb_transmitter = 9
-batch_size = 1000
+batch_size = 500
 num_epochs = 10
 num_iterations = int(math.ceil(train_X_data.shape[0] / batch_size))
 
-X = tf.placeholder(tf.float32, [None, 1999])
+X = tf.placeholder(tf.float32, [None, 1799])
 Y = tf.placeholder(tf.int32, [None, 1])
 
-X_con = tf.reshape(X, [-1, 1999, 1])
+X_con = tf.reshape(X, [-1, 1799, 1])
 # print("X_con's shape is :", X_con.shpae)
 
 keep_prob = tf.placeholder(tf.float32)
@@ -35,20 +40,41 @@ L1 = tf.nn.conv1d(X_con, W1, stride=[1, 2, 1], padding='SAME')
 L1 = tf.nn.relu(L1)
 L1 = tf.nn.pool(L1, pooling_type='MAX',window_shape=[4], strides=[4], padding='SAME')
 print(L1.shape)
-''' (?, 250, 8)'''
-L1_flat = tf.reshape(L1, [-1, 250 * 8])
+'''
+    1999 (?, 250, 8)
+    1799 (?, 225, 8)
+'''
+# L1_flat = tf.reshape(L1, [-1, 225 * 8])
 
-W2 = tf.get_variable("W2", shape=[250 * 8, 1000],
-                     initializer=tf.contrib.layers.xavier_initializer())
-b2 = tf.Variable(tf.random_normal([1000]))
-Bn2 = batch_norm(tf.matmul(L1_flat, W2) + b2)
-L2 = tf.nn.relu(Bn2)
-L2 = tf.nn.dropout(L2, keep_prob=keep_prob)
+W2 = tf.Variable(tf.random_normal([20, 8, 16], stddev=0.01))
+L2 = tf.nn.conv1d(L1, W2, stride=[1, 2, 1], padding='SAME')
+L2 = tf.nn.relu(L2)
+L2 = tf.nn.pool(L2, pooling_type='MAX',window_shape=[2], strides=[2], padding='SAME')
+print(L2.shape)
+'''
+    (?, 57, 16)
+'''
+W3 = tf.Variable(tf.random_normal([20, 16, 32], stddev=0.01))
+L3 = tf.nn.conv1d(L2, W3, stride=[1, 2, 1], padding='SAME')
+L3 = tf.nn.relu(L3)
+L3 = tf.nn.pool(L3, pooling_type='MAX',window_shape=[2], strides=[2], padding='SAME')
+print(L3.shape)
+'''
+    (?, 15, 32)
+'''
+L3_flat = tf.reshape(L3, [-1, 15 * 32])
 
-W3 = tf.get_variable("W3", shape=[1000, nb_transmitter],
+W4 = tf.get_variable("W4", shape=[15 * 32, 500],
                      initializer=tf.contrib.layers.xavier_initializer())
-b3 = tf.Variable(tf.random_normal([nb_transmitter]))
-hypothesis = tf.matmul(L2, W3) + b3
+b4 = tf.Variable(tf.random_normal([500]))
+Bn4 = batch_norm(tf.matmul(L3_flat, W4) + b4)
+L4 = tf.nn.relu(Bn4)
+L4 = tf.nn.dropout(L4, keep_prob=keep_prob)
+
+W5 = tf.get_variable("W5", shape=[500, nb_transmitter],
+                     initializer=tf.contrib.layers.xavier_initializer())
+b5 = tf.Variable(tf.random_normal([nb_transmitter]))
+hypothesis = tf.matmul(L4, W5) + b5
 
 # logits = tf.matmul(L2, W3) + b3
 # hypothesis = tf.nn.softmax(logits)
