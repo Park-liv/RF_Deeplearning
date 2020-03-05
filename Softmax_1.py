@@ -4,12 +4,13 @@ import tensorflow as tf
 tf.set_random_seed(777)
 
 data = np.load("processed_data.npy")
-train_X_data = data[:-20, 0:-1]
-train_Y_data = data[:-20, [-1]]
-test_X_data = data[-20:, 0:-1]
-test_Y_data = data[-20:, [-1]]
+train_X_data = data[:-10000, 0:-1]
+train_Y_data = data[:-10000, [-1]]
+test_X_data = data[-10000:, 0:-1]
+test_Y_data = data[-10000:, [-1]]
 
 print(train_X_data.shape, train_Y_data.shape, test_X_data.shape, test_Y_data.shape)
+print(train_Y_data)
 
 nb_transmitter = 9
 
@@ -38,33 +39,15 @@ accuracy = tf.reduce_mean(tf.cast(correct_prediction, tf.float32))
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
 
-    for step in range(3001):
+    for step in range(2001):
         _, cost_val, acc_val = sess.run([optimizer, cost, accuracy], feed_dict={X: train_X_data, Y: train_Y_data})
 
         if step % 100 == 0:
             print("Step: {:5}\tCost: {:.3f}\tAcc: {:.2%}".format(step, cost_val, acc_val))
 
-    pred = sess.run(prediction, feed_dict={X: test_X_data})
-    for p, y in zip(pred, test_Y_data.flatten()):
+    show_X_data = test_X_data[-100:, :]
+    show_Y_data = test_Y_data[-100:, :]
+
+    pred = sess.run(prediction, feed_dict={X: show_X_data})
+    for p, y in zip(pred, show_Y_data.flatten()):
         print("[{}] Prediction: {} True Y: {}".format(p == int(y), p, int(y)))
-
-'''
-W1 = tf.Variable(tf.random_normal([1999, 1024]))
-b1 = tf.Variable(tf.random_normal([1024]))
-L1 = tf.nn.relu(tf.matmul(X, W1) + b1)
-
-W2 = tf.Variable(tf.random_normal([1024, 512]))
-b2 = tf.Variable(tf.random_normal([512]))
-L2 = tf.nn.relu(tf.matmul(L1, W2) + b2)
-
-W3 = tf.Variable(tf.random_normal([512, 128]))
-b3 = tf.Variable(tf.random_normal([128]))
-L3 = tf.nn.relu(tf.matmul(L2, W3) + b3)
-
-W4 = tf.Variable(tf.random_normal([128, 3]))
-b4 = tf.Variable(tf.random_normal([3]))
-hypothesis = tf.matmul(L3, W4) + b4
-
-logits = tf.matmul(X, W) + b
-hypothesis = tf.nn.softmax(logits)
-'''
