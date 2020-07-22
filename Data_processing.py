@@ -38,14 +38,14 @@ def IL_data(filename, num_label, period=1999):
     return array_data
 
 TR1 = open('rf_433_01', 'rb')
-TR2 = open('rf_433_01', 'rb')
-TR3 = open('rf_433_01', 'rb')
-TR4 = open('rf_433_01', 'rb')
-TR5 = open('rf_433_01', 'rb')
-TR6 = open('rf_433_01', 'rb')
-TR7 = open('rf_433_01', 'rb')
-TR8 = open('rf_433_01', 'rb')
-TR9 = open('rf_433_01', 'rb')
+TR2 = open('rf_433_02', 'rb')
+TR3 = open('rf_433_03', 'rb')
+TR4 = open('rf_433_04', 'rb')
+TR5 = open('rf_433_05', 'rb')
+TR6 = open('rf_433_06', 'rb')
+TR7 = open('rf_433_07', 'rb')
+TR8 = open('rf_433_08', 'rb')
+TR9 = open('rf_433_09', 'rb')
 
 converted_data_1 = CRS_data(TR1)
 data_001 = IL_data(converted_data_1, 0)
