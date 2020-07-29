@@ -46,7 +46,7 @@ TR6 = open('rf_433_06', 'rb')
 TR7 = open('rf_433_07', 'rb')
 TR8 = open('rf_433_08', 'rb')
 TR9 = open('rf_433_09', 'rb')
-# 수정
+# 수정함
 
 converted_data_1 = CRS_data(TR1)
 data_001 = IL_data(converted_data_1, 0)
